@@ -1,5 +1,10 @@
 ﻿<body>
     <div style="font-size: medium;">
+        <!-- <h1 id="wsl2-磁碟空間管理">WSL2 磁碟空間管理</h1> -->
+        <h2 id="前言">前言</h2>
+        <p>最近又遇到了 C: 磁碟機空間不足的問題, 這次將矛頭指向 WSL2 各發行版實例的虛擬磁碟 (ext4.vhdx) 的空間佔用過大. 藉此機會將 WSL2 磁碟空間管理作了一下整理. 供備忘之用.</p>
+        <p>雖然最後壓縮的成效並不是很好, 但至少可在 D: 磁碟機, 另建一個 WSL2 發行版實例; 不用一直受限在 C: 磁碟機那個小小的空間.</p>
+        <!-- more -->
         <!-- Start Document Outline -->
         <ul>
             <li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
@@ -48,11 +53,6 @@
             <li><a href="#%E5%8F%83%E8%80%83%E6%96%87%E4%BB%B6">參考文件</a></li>
         </ul>
         <!-- End Document Outline -->
-        <!-- <h1 id="wsl2-磁碟空間管理">WSL2 磁碟空間管理</h1> -->
-        <h2 id="前言">前言</h2>
-        <p>最近又遇到了 C: 磁碟機空間不足的問題, 這次將矛頭指向 WSL2 各發行版實例的虛擬磁碟 (ext4.vhdx) 的空間佔用過大. 藉此機會將 WSL2 磁碟空間管理作了一下整理. 供備忘之用.</p>
-        <p>雖然最後壓縮的成效並不是很好, 但至少可在 D: 磁碟機, 另建一個 WSL2 發行版實例; 不用一直受限在 C: 磁碟機那個小小的空間.</p>
-        <!-- more -->
         <h2 id="一-wsl2-各發行版實例的虛擬磁碟-ext4vhdx-預設在那個資料夾下">一. WSL2 各發行版實例的虛擬磁碟 (ext4.vhdx) 預設在那個資料夾下?</h2>
         <p>預設安裝是存放在以下位置:</p>
         <pre><code class="language-powershell">%LOCALAPPDATA%\Packages\{PackageFamilyName}\LocalState\ext4.vhdx
@@ -65,7 +65,7 @@
  CanonicalGroupLimited.Ubuntu20.04LTS_79rhkp1fndgsc
  CanonicalGroupLimited.Ubuntu24.04LTS_79rhkp1fndgsc
 </code></pre>
-        <p><img src="./pictures/01-PackageFamilyName.png" alt="01 PackageFamilyName" /></p>
+        <p><img src="https://github.com/jasper-lai/20250906_WSL2_DiskSpace/blob/master/pictures/01-PackageFamilyName.png?raw=true" alt="01 PackageFamilyName" /></p>
         <h2 id="二-如何切換發行版本">二. 如何切換發行版本?</h2>
         <p>檢查一下目前已安裝的 WSL2 實例:</p>
         <pre><code class="language-ps">PS D:\Temp&gt; wsl -l -v
@@ -443,7 +443,7 @@ c34e50dcd7d9   nginx     &quot;/docker-entrypoint.…&quot;   About a minute ago
         </ol>
         <ul>
             <li>http://localhost:8080/<br />
-                <img src="./pictures/06-nginx%E5%9F%B7%E8%A1%8C%E7%B5%90%E6%9E%9C.png" alt="06 nginx執行結果" /></li>
+                <img src="https://github.com/jasper-lai/20250906_WSL2_DiskSpace/blob/master/pictures/06-nginx%E5%9F%B7%E8%A1%8C%E7%B5%90%E6%9E%9C.png?raw=true" alt="06 nginx執行結果" /></li>
         </ul>
         <ol start="5">
             <li>檢視容器詳細資訊</li>
@@ -586,7 +586,7 @@ wsl --shutdown
         <h3 id="利用-optimize-vhd-指令-進行壓縮-但看來效果不佳">利用 Optimize-Vhd 指令, 進行壓縮, 但看來效果不佳</h3>
         <pre><code class="language-ps">PS D:\WSL2\Ubuntu-24.04&gt; Optimize-Vhd -Path &quot;D:\WSL2\Ubuntu-24.04\ext4.vhdx&quot; -Mode Full
 </code></pre>
-        <p><img src="./pictures/11-Optimize-Vhd_%E6%8C%87%E4%BB%A4.png" alt="11 Optimize Vhd_指令" /></p>
+        <p><img src="https://github.com/jasper-lai/20250906_WSL2_DiskSpace/blob/master/pictures/11-Optimize-Vhd_%E6%8C%87%E4%BB%A4.png?raw=true" alt="11 Optimize Vhd_指令" /></p>
         <h3 id="看一下執行後的-vhdx-大約是-57-gb">看一下執行後的 .vhdx, 大約是 5.7 GB</h3>
         <p>看來壓縮的效果並不是很好.</p>
         <pre><code class="language-ps">PS D:\WSL2\Ubuntu-24.04&gt; dir
